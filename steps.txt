@@ -1,0 +1,50 @@
+=====================================================
+LOCAL HTTPS SETUP STEPS (Using mkcert)
+=====================================================
+
+Follow these steps to generate valid local SSL certificates 
+so the Flask app runs over HTTPS without browser warnings.
+
+1. INSTALL MKCERT
+-----------------
+Choose the command for your Operating System:
+
+   - Ubuntu/Linux: 
+     sudo apt update && sudo apt install mkcert libnss3-tools -y
+
+   - macOS (Homebrew): 
+     brew install mkcert
+
+   - Windows (Chocolatey): 
+     choco install mkcert
+
+2. SETUP THE LOCAL CERTIFICATE AUTHORITY (CA)
+---------------------------------------------
+Run this command once to make your computer trust mkcert:
+   
+   mkcert -install
+
+3. GENERATE THE CERTIFICATES
+----------------------------
+Navigate to the root folder of this project and run:
+
+   mkcert localhost 127.0.0.1 ::1
+
+   This will generate two files:
+   - localhost+2.pem (The Certificate)
+   - localhost+2-key.pem (The Private Key)
+
+4. VERIFY FILENAMES
+-------------------
+Ensure the filenames in the folder match the ones 
+defined in the 'app.run' section of the Python code:
+
+   cert_file = 'localhost+2.pem'
+   key_file = 'localhost+2-key.pem'
+
+5. RUN THE APP
+--------------
+Start your Jupyter Notebook or Python script. 
+Access the app at: https://127.0.0.1:5001
+
+=====================================================
