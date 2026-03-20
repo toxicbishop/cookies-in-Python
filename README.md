@@ -2,7 +2,8 @@
 
 A secure programmatic advertising demo using Flask and HTTPS. This project focuses on implementing robust web security practices, including **HTTPS (SSL/TLS)**, **Signed Cookies**, and persistent **Session Tracking**.
 
-## 🚀 Features
+## Features
+
 - **Local HTTPS**: Uses `mkcert` for a trusted local development environment.
 - **Secure Sessions**: Implements Flask `session` for tamper-proof visitor counting.
 - **User Profiles**: Persistent storage of user interests and visit analytics.
@@ -11,7 +12,8 @@ A secure programmatic advertising demo using Flask and HTTPS. This project focus
 
 ---
 
-## 🛡️ Security Features Explained
+## Security Features Explained
+
 - **Secure=True**: Ensures cookies are only sent over encrypted HTTPS connections.
 - **HttpOnly=True**: Prevents client-side scripts (JavaScript) from accessing session cookies, mitigating XSS attacks.
 - **SameSite=Lax**: Protects against Cross-Site Request Forgery (CSRF) while allowing essential functionality.
@@ -19,46 +21,58 @@ A secure programmatic advertising demo using Flask and HTTPS. This project focus
 
 ---
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 ### 1. Prerequisites
+
 You'll need `mkcert` to handle local SSL certificates.
+
 - **Windows**: `choco install mkcert`
 - **macOS**: `brew install mkcert`
 - **Linux (Ubuntu)**: `sudo apt install mkcert libnss3-tools`
 
 Run the initial setup:
+
 ```bash
 mkcert -install
 ```
 
 ### 2. Generate Local Certificates
+
 ```bash
 mkcert localhost 127.0.0.1 ::1
 ```
-*Creates `localhost+2.pem` and `localhost+2-key.pem` files.*
+
+_Creates `localhost+2.pem` and `localhost+2-key.pem` files._
 
 ### 3. Installation
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Database Setup
+
 The application uses SQLite. To manually initialize the schema using `schema.sql`:
+
 ```bash
 sqlite3 users.db < schema.sql
 ```
-*(Note: The app will also initialize the database automatically on startup if `users.db` is missing.)*
+
+_(Note: The app will also initialize the database automatically on startup if `users.db` is missing.)_
 
 ### 5. Run the Application
+
 ```bash
 python cookies.py
 ```
-*Access the secure portal at:* **`https://127.0.0.1:5001`**
+
+_Access the secure portal at:_ **`https://127.0.0.1:5001`**
 
 ---
 
-## 📂 Project Structure
+## Project Structure
+
 - `cookies.py`: Main Flask application and database models.
 - `schema.sql`: Database table definitions for SQLite.
 - `users.db`: Persistent database file (ignored by Git).
