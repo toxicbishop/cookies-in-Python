@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # 1. Configurations
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'dev-key-789')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.abspath(os.path.dirname(__file__)), 'users.db')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Upload Settings
